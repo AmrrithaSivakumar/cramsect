@@ -56,6 +56,15 @@ Genoverse.Plugins.tersectIntegration = function () {
                             $(this).data("tersectIndexMenu",tersectIndexMenu);
                         }
                     });
+                    //Venn gui pop up when press submit
+                    $('#submit-query').on('click',function(){
+                      if(vennGui){
+                        vennGui.show();
+                      } else {
+                        vennGui = makeVennGui();
+                      }
+
+                    });
                     $('#saved-queries').on('click', function () {
                         //$(".gv-tersect-integration-file-menu").remove();
                         //tersectFileMenu = makeTersectFileMenu();
@@ -93,10 +102,7 @@ Genoverse.Plugins.tersectIntegration = function () {
 
                 }).addClass('gv-tersect-integration-menu');
 
-                // loading the venn gui file
-                $.get('/tersectVenn.jade', function(result){
-                  $('#tsi-file').html(result); // not sure what # to put, #=html id selector
-                });
+
 
                 return tersectMenu;
             }
@@ -144,7 +150,19 @@ Genoverse.Plugins.tersectIntegration = function () {
                 return geneMenu;
             }
 
+            function makeVennGui() {
+              var gui = browser.makeMenu({
+                '<div>Venn Diagram</div>':'',
+                '<div id="names" class ="gv-tersect-integration-text"</div>:'',
 
+                // loading the venn gui file
+                $.get('/tersectVenn.jade', function(result){
+                  $('#names').html(result); // not sure what # to put, #=html id selector
+                });
+              }).addClass('gv-tersect-integration-file-menu');
+
+              return gui;
+            }
 
         }});
 };
