@@ -57,7 +57,7 @@ Genoverse.Plugins.tersectIntegration = function () {
                         }
                     });
                     //Venn gui pop up when press submit
-                    $('#submit-query').on('click',function(){
+                    $('#submit-query').on('click', function () {
                       if(vennGui){
                         vennGui.show();
                       } else {
@@ -160,7 +160,7 @@ Genoverse.Plugins.tersectIntegration = function () {
                   $('#names').html(result); // not sure what # to put, #=html id selector
                 });
               }).addClass('gv-tersect-integration-file-menu');
-
+              console.log("venn gui");
               return gui;
             }
 
