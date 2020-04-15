@@ -153,7 +153,7 @@ Genoverse.Plugins.tersectIntegration = function () {
             function makeVennGui() {
               var gui = browser.makeMenu({
                 '<div>Venn Diagram</div>':'',
-                '<div id="names" class ="gv-tersect-integration-text"</div>:'',
+                '<div id="names" class ="gv-tersect-integration-text">Gui</div>:'',
 
                 // loading the venn gui file
                 $.get('/tersectVenn.jade', function(result){
