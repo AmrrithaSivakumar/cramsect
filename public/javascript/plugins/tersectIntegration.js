@@ -92,6 +92,12 @@ Genoverse.Plugins.tersectIntegration = function () {
                     '<div><span class="gv-tersect-integration-span" id="save-query"><a class="gv-tersect-integration-text ">Save Query <i id="save-status" class="fa fa-arrow-circle-right"></i></a></span> <span class="gv-tersect-integration-span" id="saved-queries"><a class="gv-tersect-integration-text">Saved Queries <i class="fa fa-arrow-circle-right"></i></a></span></div>': '<span><a class="gv-tersect-integration-text gv-tersect-integration-submit-button" id="submit-query">Submit <i class="fa fa-arrow-circle-right"></i></a></span>',
 
                 }).addClass('gv-tersect-integration-menu');
+
+                // loading the venn gui file
+                $.get('/tersectVenn.jade', function(result){
+                  $('#tsi-file').html(result); // not sure what # to put, #=html id selector
+                });
+
                 return tersectMenu;
             }
 
