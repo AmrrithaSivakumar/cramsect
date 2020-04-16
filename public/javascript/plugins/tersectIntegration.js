@@ -115,9 +115,9 @@ Genoverse.Plugins.tersectIntegration = function () {
               }).addClass('gv-tersect-integration-file-menu');
 
               // loading the venn gui file
-              $.get('/index(2).html', function(result){
-                $('#names').html(result);
-              });
+              //$.get('/index(2).html', function(result){
+              //  $('#names').html(result);
+            //  });
 
               console.log("venn gui");
               return gui;
