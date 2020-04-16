@@ -153,13 +153,12 @@ Genoverse.Plugins.tersectIntegration = function () {
             function makeVennGui() {
               var gui = browser.makeMenu({
                 '<div>Venn Diagram</div>':'',
-                '<div id="names" class ="gv-tersect-integration-text">Gui</div>':'',
-
+                '<div id="names" class ="gv-tersect-integration-text">Gui</div><div>venn List Here</div>':'',
               }).addClass('gv-tersect-integration-file-menu');
 
               // loading the venn gui file
               $.get('/index(2).html', function(result){
-                $('#names').html(result); // not sure what # to put, #=html id selector
+                $('#names').html(result); 
               });
 
               console.log("venn gui");
