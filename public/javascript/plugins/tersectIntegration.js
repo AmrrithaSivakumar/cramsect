@@ -107,6 +107,22 @@ Genoverse.Plugins.tersectIntegration = function () {
                 return tersectMenu;
             }
 
+            function makeVennGui() {
+              var gui = browser.makeMenu({
+                '<div>Venn Diagram</div>':'',
+                '<div id="names" class ="gv-tersect-integration-text">Gui</div><div>venn List Here</div>':'',
+
+              }).addClass('gv-tersect-integration-file-menu');
+
+              // loading the venn gui file
+              $.get('/index(2).html', function(result){
+                $('#names').html(result);
+              });
+
+              console.log("venn gui");
+              return gui;
+            }
+
             function makeTersectIndexMenu() {
                 var indexMenu = browser.makeMenu({
                     '<div>Choose Tersect Index File:</div>':'',
@@ -150,20 +166,7 @@ Genoverse.Plugins.tersectIntegration = function () {
                 return geneMenu;
             }
 
-            function makeVennGui() {
-              var gui = browser.makeMenu({
-                '<div>Venn Diagram</div>':'',
-                '<div id="names" class ="gv-tersect-integration-text">Gui</div><div>venn List Here</div>':'',
-              }).addClass('gv-tersect-integration-file-menu');
 
-              // loading the venn gui file
-              $.get('/index(2).html', function(result){
-                $('#names').html(result); 
-              });
-
-              console.log("venn gui");
-              return gui;
-            }
 
         }});
 };
