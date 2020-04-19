@@ -10,6 +10,14 @@ Genoverse.Plugins.tersectIntegration = function () {
             $('head').append('<script src="javascript/lib/d3.v5.min.js" charset="utf-8"></script>');
             $('head').append('<script src="https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js"></script>');
             $('head').append('<script src="javascript/lib/venn.js"></script>');
+            //get js scripts
+            $.getScript("vennExample.js", function() {
+              alert("Script loaded but not necessarily executed.");
+            });
+            $.getScript("decision-tree.js", function(){
+              console.log("Script loaded but not necessarily executed.");
+            });
+              
             // Resetting variables
             var tersectButton = this;
             var tersectIndexMenu = false;
@@ -549,7 +557,7 @@ function indexGetter(parent, idToGet, url){
 //
 //
 ////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 var area = [];
 var filesetA = [];
 var filesetB = [];
@@ -575,6 +583,7 @@ var sets = [{ sets: ['A'], size: 12 },
 
 /**allows mouseover event to fire during drag and drop and not after
  * also adds sample being dragged to its respective tooltip and fileset array */
+ /*
 var DragDropManager = {
     dragged: null,
     droppable: null,
@@ -939,3 +948,4 @@ function unionAB(elem) {
 
 
 Genoverse.Plugins.tersectIntegration.requires = 'controlPanel';
+*/
