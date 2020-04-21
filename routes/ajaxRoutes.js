@@ -212,7 +212,6 @@ router.post('/tersectUpload/view',function(req,res,next){
 
 //add file path to tsi file to run
 function tersect(command, id, file) {
-    //need to look into JSON object strings - for now use .includes()
     console.log(command);
     query={_id:id}
     TersectIntegration.findOne(query, function(err,entry){
@@ -220,7 +219,6 @@ function tersect(command, id, file) {
             console.error('File Deletion Error: Cant Find Ref: ' + err)
         } else {
             console.log(entry.route);
-            //if command involves B going first
             var tcommand = spawn('tersect', ['view', entry.route, '"' + command +'"'], { shell: true });
             var output = fs.createWriteStream(file);
             tcommand.stdout.on('data', (data) => {
@@ -244,6 +242,7 @@ function tersect(command, id, file) {
 
 router.post('/generate',function(req,res,next){
     var comm = req.body.command;
+    //convert samples selected into tersect format u()
     var A = "u" + req.body.setA.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
     var B = "u" + req.body.setB.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
     var C = "u" + req.body.setC.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
@@ -251,7 +250,7 @@ router.post('/generate',function(req,res,next){
     var fullCommand = comm.replace(/A/g, A).replace(/B/g, B).replace(/C/g, C);
     var id = req.body.idToGet;
     var filepath = path.join(__dirname, "../newVCF/"+ req.body.filepath);
-    //convert samples selected into tersect format u()
+    
     console.error("ID: "+req.body.idToGet);
     console.error("Command: "+req.body.command);
     console.error("Fullcommand: "+fullCommand);

@@ -27,45 +27,45 @@ Genoverse.Plugins.tersectIntegration = function () {
                 if (tersectMenu) {
                     tersectMenu.show();
                 } else {
-                    tersectMenu = makeTersectMenu().attr("id","tersectMenu");
+                    tersectMenu = makeTersectMenu().attr("id", "tersectMenu");
                     $('#tsi-file').on('click', function () {
                         tersectIndexMenu = $(this).data("tersectIndexMenu");
                         console.log("index menu is worth:" + tersectIndexMenu);
-                        if(tersectIndexMenu){
+                        if (tersectIndexMenu) {
                             tersectIndexMenu.show();
 
                         } else {
-                            tersectIndexMenu = makeTersectIndexMenu().attr("id","tersectIndexMenu");
+                            tersectIndexMenu = makeTersectIndexMenu().attr("id", "tersectIndexMenu");
                             //$('#tsi-locate-index',tersectIndexMenu).on('click',indexPopulator('/index/tersectUpload'));
-                            $('#tsi-locate-index',tersectIndexMenu).on('click',function () {
+                            $('#tsi-locate-index', tersectIndexMenu).on('click', function () {
                                 tersectFileMenu = $(this).data("tersectFileMenu");
-                                if(tersectFileMenu){
+                                if (tersectFileMenu) {
                                     tersectFileMenu.show();
                                 } else {
-                                    tersectFileMenu = makeTersectFileMenu().attr("id","tersectFileMenu");
-                                    $('#tsi-locate-index',tersectIndexMenu).on('click',indexPopulator(".gv-tersect-index-list tbody","/index/tersectUpload"))
+                                    tersectFileMenu = makeTersectFileMenu().attr("id", "tersectFileMenu");
+                                    $('#tsi-locate-index', tersectIndexMenu).on('click', indexPopulator(".gv-tersect-index-list tbody", "/index/tersectUpload"))
 
-                                    $(this).data("tersectFileMenu",tersectFileMenu);
+                                    $(this).data("tersectFileMenu", tersectFileMenu);
                                 }
                             });
-                            $('#generate-new-button',tersectIndexMenu).on('click',function () {
+                            $('#generate-new-button', tersectIndexMenu).on('click', function () {
                                 indexGenerationMenu = $(this).data("indexGenerationMenu");
-                                if(indexGenerationMenu){
+                                if (indexGenerationMenu) {
                                     indexGenerationMenu.show();
                                 } else {
-                                    indexGenerationMenu = makeIndexGenerationMenu().attr("id","indexGenerationMenu");
+                                    indexGenerationMenu = makeIndexGenerationMenu().attr("id", "indexGenerationMenu");
 
                                     $(this).data("indexGenerationMenu", indexGenerationMenu);
                                 }
                             });
 
-                            $(this).data("tersectIndexMenu",tersectIndexMenu);
+                            $(this).data("tersectIndexMenu", tersectIndexMenu);
                         }
                     });
                     $('#saved-queries').on('click', function () {
                         //$(".gv-tersect-integration-file-menu").remove();
                         //tersectFileMenu = makeTersectFileMenu();
-                        if(queryMenu){
+                        if (queryMenu) {
                             queryMenu.show();
                         } else {
                             queryMenu = makeQueryMenu();
@@ -75,10 +75,10 @@ Genoverse.Plugins.tersectIntegration = function () {
                     $('#save-query').on('click', function () {
                         $("#save-status").removeClass("fa-arrow-circle-right");
                         $("#save-status").addClass("fa-spin fa-spinner");
-                        setTimeout(function(){
+                        setTimeout(function () {
                             $("#save-status").removeClass("fa-spin fa-spinner");
                             $("#save-status").addClass("fa-arrow-circle-right")
-                        },3000)
+                        }, 3000)
                     });
                     $('.gv-close', tersectMenu).on('click', function () {
                         $(tersectButton).removeClass('gv-active');
@@ -119,7 +119,7 @@ Genoverse.Plugins.tersectIntegration = function () {
                                 <tr>\
                                     <th><button id="hideC">&times;</button> Samples in C</th>\
                                 </tr>\
-                            <tr id="hereC"></tr></table> </div>':'<div id="venn"></div>',
+                            <tr id="hereC"></tr></table> </div>': '<div id="venn"></div>',
 
                 }).addClass('gv-tersect-integration-menu');
                 vennInit();
@@ -129,42 +129,42 @@ Genoverse.Plugins.tersectIntegration = function () {
 
             function makeTersectIndexMenu() {
                 var indexMenu = browser.makeMenu({
-                    '<div>Choose Tersect Index File:</div>':'',
-                    '<table class="gv-tersect-integration-text gv-tersect-index-list"><thead><tr><td>Name</td><td>Instance</td><td>Local?</td><td>&emsp;&emsp;&emsp;</td></tr></thead><tbody></tbody></table>':'',
-                    '<span class="gv-tersect-integration-span" id="tsi-locate-index"><a class="gv-tersect-integration-text">Locate TSI Index <i class="fa fa-arrow-circle-right"></i></a></span>':'',
-                    '<span class="gv-tersect-integration-span" id="generate-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>':''
+                    '<div>Choose Tersect Index File:</div>': '',
+                    '<table class="gv-tersect-integration-text gv-tersect-index-list"><thead><tr><td>Name</td><td>Instance</td><td>Local?</td><td>&emsp;&emsp;&emsp;</td></tr></thead><tbody></tbody></table>': '',
+                    '<span class="gv-tersect-integration-span" id="tsi-locate-index"><a class="gv-tersect-integration-text">Locate TSI Index <i class="fa fa-arrow-circle-right"></i></a></span>': '',
+                    '<span class="gv-tersect-integration-span" id="generate-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>': ''
                 }).addClass('gv-tersect-integration-file-menu');
                 return indexMenu;
             }
 
             function makeIndexGenerationMenu() {
                 var generationMenu = browser.makeMenu({
-                    '<div>Generate A New Tersect Index File:</div>':'',
-                    '<div class="gv-tersect-dropzone"><a id="select-vcf">Select</a> Or Drop Files Here</div><input class="gv-tersect-integration-input gv-tersect-file-input" type="file" id="vcf-file-chooser" name="vcf file chooser" multiple>':'',
-                    '':'',
-                    '<span class="gv-tersect-integration-span" id="submit-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>':''
+                    '<div>Generate A New Tersect Index File:</div>': '',
+                    '<div class="gv-tersect-dropzone"><a id="select-vcf">Select</a> Or Drop Files Here</div><input class="gv-tersect-integration-input gv-tersect-file-input" type="file" id="vcf-file-chooser" name="vcf file chooser" multiple>': '',
+                    '': '',
+                    '<span class="gv-tersect-integration-span" id="submit-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>': ''
                 }).addClass('gv-tersect-integration-file-menu');
-                vcfUploader(generationMenu,'#submit-new-button',"#vcf-file-chooser","#select-vcf","vcf","/index/vcfUpload")
+                vcfUploader(generationMenu, '#submit-new-button', "#vcf-file-chooser", "#select-vcf", "vcf", "/index/vcfUpload")
                 return generationMenu;
             }
 
             function makeTersectFileMenu() {
                 var fileMenu = browser.makeMenu({
-                    '<div>Choose Tersect Index Files:</div>':'',
-                    '<div id="names" class="gv-tersect-integration-text">Local File Selection Here</div>':'<div class="gv-tersect-integration-text">Remote File Selection Here</div> <div class="gv-tersect-integration-text">(FTP etc.)</div>',
-                    '<input class="gv-tersect-integration-input gv-tersect-file-input" type="file" id="local-file-chooser" name="local file chooser" multiple><div class="progressbar-border"> <div id="local-file-progress" class="progressbar-fill"></div></div>':'<input class="gv-tersect-integration-input" type="file" id="remote-file-chooser" name="remote file chooser" multiple>',
-                    '<span id="tsi-submit-local" class="gv-tersect-integration-span"><a id="tsi-submit-local-text" class="gv-tersect-integration-text">Submit <i class="fa fa-arrow-circle-right"></i></a></span>':'<span class="gv-tersect-integration-span" id="tsi-submit-remote"><a class="gv-tersect-integration-text">Submit <i class="fa fa-arrow-circle-right"></i></a></span>',
-                    '<span class="gv-tersect-integration-span" id="generate-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>':''
+                    '<div>Choose Tersect Index Files:</div>': '',
+                    '<div id="names" class="gv-tersect-integration-text">Local File Selection Here</div>': '<div class="gv-tersect-integration-text">Remote File Selection Here</div> <div class="gv-tersect-integration-text">(FTP etc.)</div>',
+                    '<input class="gv-tersect-integration-input gv-tersect-file-input" type="file" id="local-file-chooser" name="local file chooser" multiple><div class="progressbar-border"> <div id="local-file-progress" class="progressbar-fill"></div></div>': '<input class="gv-tersect-integration-input" type="file" id="remote-file-chooser" name="remote file chooser" multiple>',
+                    '<span id="tsi-submit-local" class="gv-tersect-integration-span"><a id="tsi-submit-local-text" class="gv-tersect-integration-text">Submit <i class="fa fa-arrow-circle-right"></i></a></span>': '<span class="gv-tersect-integration-span" id="tsi-submit-remote"><a class="gv-tersect-integration-text">Submit <i class="fa fa-arrow-circle-right"></i></a></span>',
+                    '<span class="gv-tersect-integration-span" id="generate-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>': ''
                 }).addClass('gv-tersect-integration-file-menu');
-                $('#tsi-submit-local',fileMenu).on('click',function(){fileUploader(fileMenu,"#tsi-submit-local-text","#local-file-progress","#local-file-chooser","tsi", ".gv-tersect-index-list tbody","/index/tersectUpload/new")});
+                $('#tsi-submit-local', fileMenu).on('click', function () { fileUploader(fileMenu, "#tsi-submit-local-text", "#local-file-progress", "#local-file-chooser", "tsi", ".gv-tersect-index-list tbody", "/index/tersectUpload/new") });
                 return fileMenu;
             }
 
 
             function makeQueryMenu() {
                 var geneMenu = browser.makeMenu({
-                    '<div>Choose Query</div>':'',
-                    '<div id="names" class="gv-tersect-integration-text">Demo</div><div>Query List Here</div>':'',
+                    '<div>Choose Query</div>': '',
+                    '<div id="names" class="gv-tersect-integration-text">Demo</div><div>Query List Here</div>': '',
                 }).addClass('gv-tersect-integration-file-menu');
                 console.log("FileRunAgain");
                 return geneMenu;
@@ -172,13 +172,14 @@ Genoverse.Plugins.tersectIntegration = function () {
 
 
 
-        }});
+        }
+    });
 };
 function setScrollBar() {
-    $('#pos').css({"height": "500px"});
-    $('#names').css({"height": "500px"});
-    $('#pos').css({"overflow-y": "scroll"});
-    $('#names').css({"overflow-y": "hidden"});
+    $('#pos').css({ "height": "500px" });
+    $('#names').css({ "height": "500px" });
+    $('#pos').css({ "overflow-y": "scroll" });
+    $('#names').css({ "overflow-y": "hidden" });
     $('#pos').on('scroll', function () {
         $('#names').scrollTop($(this).scrollTop());
     });
@@ -186,25 +187,25 @@ function setScrollBar() {
 
 
 function removeScrollBar() {
-    $('#pos').css({"height": "auto"});
-    $('#names').css({"height": "auto"});
-    $('#pos').css({"overflow-y": "hidden"});
-    $('#names').css({"overflow-y": "hidden"});
+    $('#pos').css({ "height": "auto" });
+    $('#names').css({ "height": "auto" });
+    $('#pos').css({ "overflow-y": "hidden" });
+    $('#names').css({ "overflow-y": "hidden" });
 }
 
 
-function fileUploader(parent,submit_link_text,progress_bar,chooser,extension,index_list,url) {
-    $(chooser,parent).click();
+function fileUploader(parent, submit_link_text, progress_bar, chooser, extension, index_list, url) {
+    $(chooser, parent).click();
 
     var flag = true;
-    $(chooser).off().on('change', function() {
-        var files = $(chooser,parent).get(0).files;
+    $(chooser).off().on('change', function () {
+        var files = $(chooser, parent).get(0).files;
 
         if (files.length > 0) {
-            $(submit_link_text,parent).text('Submit 0%');
-            $(progress_bar,parent).width("0%");
+            $(submit_link_text, parent).text('Submit 0%');
+            $(progress_bar, parent).width("0%");
             var formData = new FormData();
-            formData.append("instanceName",$('h1')[0].childNodes[0].nodeValue);
+            formData.append("instanceName", $('h1')[0].childNodes[0].nodeValue);
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 // add the files to formData object for the data payload
@@ -230,7 +231,7 @@ function fileUploader(parent,submit_link_text,progress_bar,chooser,extension,ind
                 contentType: false,
                 success: function (data) {
                     console.log('upload successful!\n' + Date.now());
-                    indexPopulator(index_list,url);
+                    indexPopulator(index_list, url);
 
                 },
                 xhr: function () {
@@ -243,11 +244,11 @@ function fileUploader(parent,submit_link_text,progress_bar,chooser,extension,ind
                             var percentComplete = evt.loaded / evt.total;
                             percentComplete = parseInt(percentComplete * 100);
                             //
-                            $(submit_link_text,parent).text('Submit ' + percentComplete + '%');
-                            $(progress_bar,parent).width(percentComplete+'%');
+                            $(submit_link_text, parent).text('Submit ' + percentComplete + '%');
+                            $(progress_bar, parent).width(percentComplete + '%');
                             // once the upload reaches 100%, set the progress bar text to done
                             if (percentComplete === 100) {
-                                $(submit_link_text,parent).text('Submission Complete');
+                                $(submit_link_text, parent).text('Submission Complete');
                             }
                         }
                     }, false);
@@ -263,70 +264,70 @@ function fileUploader(parent,submit_link_text,progress_bar,chooser,extension,ind
     });
 }
 
-function indexPopulator(index_list,url){
+function indexPopulator(index_list, url) {
     console.log("event fired successfully!");
     $(index_list).empty();
     $.ajax({
         type: 'GET',
         url: url,
-        success: function(data){
-            console.log("latest value"+this);
-            $.each(data, function(){
-                $(index_list).append('<tr data-id="'+this._id+'"><td><a class="gv-tersect-index-name">'+this.name+'</a></td><td><span>'+this.instance+'</span></td><td><span>'+this.local+'</span></td><td><a class="gv-tersect-index-delete">delete</a></td></tr>');
+        success: function (data) {
+            console.log("latest value" + this);
+            $.each(data, function () {
+                $(index_list).append('<tr data-id="' + this._id + '"><td><a class="gv-tersect-index-name">' + this.name + '</a></td><td><span>' + this.instance + '</span></td><td><span>' + this.local + '</span></td><td><a class="gv-tersect-index-delete">delete</a></td></tr>');
             });
 
 
-            $(index_list).parent().off().on('click','.gv-tersect-index-delete',function(){indexDeleter(index_list,$(this).parent().parent().data("id"),url)});
-            $(index_list).parent().on('click','.gv-tersect-index-name',function(){indexGetter(index_list,$(this).parent().parent().data("id"),url)});
+            $(index_list).parent().off().on('click', '.gv-tersect-index-delete', function () { indexDeleter(index_list, $(this).parent().parent().data("id"), url) });
+            $(index_list).parent().on('click', '.gv-tersect-index-name', function () { indexGetter(index_list, $(this).parent().parent().data("id"), url) });
         },
         dataType: "json"
     });
 }
 
-function indexDeleter(index_list,deletion_id,url){
-    console.log("delete event fired at: "+Date.now());
+function indexDeleter(index_list, deletion_id, url) {
+    console.log("delete event fired at: " + Date.now());
     $.ajax({
         type: 'DELETE',
         url: url + "/" + deletion_id,
-        success: function(data){
+        success: function (data) {
             alert("Item Deleted!");
-            indexPopulator(index_list,url);
+            indexPopulator(index_list, url);
         },
-        error: function(err){
+        error: function (err) {
             console.error(err);
         }
     })
 }
 
-function vcfUploader(parent,submit_link,chooser,chooser_link,extension,url){
+function vcfUploader(parent, submit_link, chooser, chooser_link, extension, url) {
     var formData = new FormData();
     formData.append("instanceName", $('h1')[0].childNodes[0].nodeValue);
 
-    $(document).data("vcfFormData",formData);
-    console.log(JSON.stringify($(document).data("vcfFormData"),null,4));
+    $(document).data("vcfFormData", formData);
+    console.log(JSON.stringify($(document).data("vcfFormData"), null, 4));
 
-    $(chooser_link,parent).on('click', function(){
-        $(chooser,parent).click();
-        $(chooser, parent).off().on('change', function() {
+    $(chooser_link, parent).on('click', function () {
+        $(chooser, parent).click();
+        $(chooser, parent).off().on('change', function () {
             var files = $(chooser, parent).get(0).files;
 
             if (files.length > 0) {
-                handleFileUpload(parent,"vcfFormData",files,extension);
-                if($(".gv-tersect-dropzone .statusbar",parent)[0] && !$(".remove",parent)[0]){
-                    $("<a class='remove'>remove</a>").insertAfter($(".gv-tersect-dropzone",parent));
-                    if(!$(".entryname",parent)[0]) {
+                handleFileUpload(parent, "vcfFormData", files, extension);
+                if ($(".gv-tersect-dropzone .statusbar", parent)[0] && !$(".remove", parent)[0]) {
+                    $("<a class='remove'>remove</a>").insertAfter($(".gv-tersect-dropzone", parent));
+                    if (!$(".entryname", parent)[0]) {
                         $("<input type=text placeholder='Name New Index:' class='entryname'></input><br>").insertAfter($(".gv-tersect-dropzone", parent));
                     }
-                    $(".remove", parent).on("click", function(){
-                        $(".statusbar",parent).empty();
+                    $(".remove", parent).on("click", function () {
+                        $(".statusbar", parent).empty();
                         formData = new FormData();
-                        $(document).data("vcfFormData",formData);
-                        $(".entryname",parent).remove();
+                        $(document).data("vcfFormData", formData);
+                        $(".entryname", parent).remove();
                         $(".remove", parent).remove();
                     })
                 }
             }
-            $(chooser,parent).val("");
+            $(chooser, parent).val("");
 
         });
     });
@@ -346,17 +347,17 @@ function vcfUploader(parent,submit_link,chooser,chooser_link,extension,url){
         var files = e.originalEvent.dataTransfer.files;
 
         //We need to send dropped files to Server
-        handleFileUpload(parent,"vcfFormData",files,extension);
-        if($(".gv-tersect-dropzone .statusbar",parent)[0] && !$(".remove",parent)[0]){
-            $("<a class='remove'>remove</a>").insertAfter($(".gv-tersect-dropzone",parent));
-            if(!$(".entryname",parent)[0]) {
+        handleFileUpload(parent, "vcfFormData", files, extension);
+        if ($(".gv-tersect-dropzone .statusbar", parent)[0] && !$(".remove", parent)[0]) {
+            $("<a class='remove'>remove</a>").insertAfter($(".gv-tersect-dropzone", parent));
+            if (!$(".entryname", parent)[0]) {
                 $("<br><input type=text character_set='ISO-8859-1' placeholder='Name New Index:' class='entryname'></input>").insertAfter($(".gv-tersect-dropzone", parent));
             }
-            $(".remove", parent).on("click", function(){
-                $(".statusbar",parent).empty();
+            $(".remove", parent).on("click", function () {
+                $(".statusbar", parent).empty();
                 formData = new FormData();
-                $(document).data("vcfFormData",formData);
-                $(".entryname",parent).remove();
+                $(document).data("vcfFormData", formData);
+                $(".entryname", parent).remove();
                 $(".remove", parent).remove();
             })
         }
@@ -375,17 +376,17 @@ function vcfUploader(parent,submit_link,chooser,chooser_link,extension,url){
         e.preventDefault();
     });
 
-    $(submit_link).on('click', function(){
+    $(submit_link).on('click', function () {
         var vcfFormData = $(document).data('vcfFormData');
         if ($(".statusbar", parent)[0]) {
             // if($("entryname",parent).val()) {
-                var newName = $(".entryname",parent).val()
-                newName = newName.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+            var newName = $(".entryname", parent).val()
+            newName = newName.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
             // }
-            if(newName) {
-                $('<div class="progressbar-border"> <div class="progressbar-fill"></div></div>').insertAfter($(submit_link,parent));
+            if (newName) {
+                $('<div class="progressbar-border"> <div class="progressbar-fill"></div></div>').insertAfter($(submit_link, parent));
 
-                vcfFormData.append('newName',newName);
+                vcfFormData.append('newName', newName);
                 $.ajax({
                     url: url,
                     type: 'POST',
@@ -436,23 +437,23 @@ function vcfUploader(parent,submit_link,chooser,chooser_link,extension,url){
 
 
 
-function handleFileUpload(parent,form_data,files,extension){
+function handleFileUpload(parent, form_data, files, extension) {
     formData = $(document).data(form_data);
 
     for (var i = 0; i < files.length; i++) {
         var file = files[i];
-        if (!(file.name.endsWith("."+extension)||file.name.endsWith("."+extension+".gz"))) {
+        if (!(file.name.endsWith("." + extension) || file.name.endsWith("." + extension + ".gz"))) {
             alert("a file in that selection has the wrong extension");
             break;
         };
         formData.append('uploads[]', file, file.name);
 
         var status = new createStatusbar(parent); //Using this we can set progress.
-        status.setFileNameSize(file.name,file.size);
+        status.setFileNameSize(file.name, file.size);
 
     }
 
-    $(this).data(form_data,formData);
+    $(this).data(form_data, formData);
 
 }
 
@@ -462,19 +463,17 @@ function createStatusbar(parent) {
     this.statusbar = $("<div class='statusbar'></div>");
     this.filename = $("<span class='filename'></span>").appendTo(this.statusbar);
     this.size = $("<span class='filesize'></span>").appendTo(this.statusbar);
-    $(".gv-tersect-dropzone",parent).append(this.statusbar);
+    $(".gv-tersect-dropzone", parent).append(this.statusbar);
 
-    this.setFileNameSize = function(name,size) {
-        var sizeStr="";
-        var sizeKB = size/1024;
-        if(parseInt(sizeKB) > 1024)
-        {
-            var sizeMB = sizeKB/1024;
-            sizeStr = sizeMB.toFixed(2)+" MB";
+    this.setFileNameSize = function (name, size) {
+        var sizeStr = "";
+        var sizeKB = size / 1024;
+        if (parseInt(sizeKB) > 1024) {
+            var sizeMB = sizeKB / 1024;
+            sizeStr = sizeMB.toFixed(2) + " MB";
         }
-        else
-        {
-            sizeStr = sizeKB.toFixed(2)+" KB";
+        else {
+            sizeStr = sizeKB.toFixed(2) + " KB";
         }
 
         this.filename.html(name);
@@ -483,8 +482,8 @@ function createStatusbar(parent) {
 
 }
 
-function indexGetter(parent, idToGet, url){
-    $.post(url+"/view", { "tsifile": idToGet }, function (data) {
+function indexGetter(parent, idToGet, url) {
+    $.post(url + "/view", { "tsifile": idToGet }, function (data) {
         operations.idToGet = idToGet;
         let samples = data.samples;
         $('#genomeTable').append('<tr>');
@@ -496,10 +495,10 @@ function indexGetter(parent, idToGet, url){
                 cursorAt: { left: -2, top: -2 },
                 // Register what we're dragging with the drop manager
                 start: function (event) {
-                    DragDropManager.dragged = event.target;
+                    DragDrop.dragged = event.target;
                 },
                 drag: function (event) {
-                    var goodPos = DragDropManager.placement();
+                    var goodPos = DragDrop.placement();
                     //change tooltip depending on location of cursor
                     div.style('cursor', function () {
                         return (goodPos) ? 'copy' : 'no-drop';
@@ -509,22 +508,22 @@ function indexGetter(parent, idToGet, url){
                     $(event.target).draggable('option', 'disabled', (goodPos) ? true : false);
                 },
                 stop: function (event) {
-                    var goodPos = DragDropManager.placement();
+                    var goodPos = DragDrop.placement();
                     if (goodPos) {
                         new Noty({
                             type: 'success',
                             layout: 'topRight',
-                            text: DragDropManager.dragged.innerText + ' has been dropped in: ' + DragDropManager.droppable,
+                            text: DragDrop.dragged.innerText + ' has been dropped in: ' + DragDrop.droppable,
                             timeout: '4000',
                             theme: 'light',
                         }).show();
-                        DragDropManager.add();
+                        DragDrop.add();
 
                     } else {
                         new Noty({
                             type: 'warning',
                             layout: 'topRight',
-                            text: DragDropManager.dragged.innerText + " cannot be dropped here!",
+                            text: DragDrop.dragged.innerText + " cannot be dropped here!",
                             timeout: '5000',
                             theme: 'light',
                             closeWith: ['click'],
@@ -562,11 +561,8 @@ var filesetA = [];
 var filesetB = [];
 var filesetC = [];
 var wildcardgroup;
-var operand;
-var reverse;
 var wildcardID = [];
 var operations = {};
-var int = [];
 var command;
 var sampleCountA = 0;
 var sampleCountB = 0;
@@ -594,7 +590,7 @@ $("label[for=B], #B, #countB, label[for=C], #C, #countC").hide();
 
 /**allows mouseover event to fire during drag and drop and not after
  * also adds sample being dragged to its respective tooltip and fileset array */
-var DragDropManager = {
+var DragDrop = {
     dragged: null,
     droppable: null,
     placement: function () {
@@ -609,21 +605,21 @@ var DragDropManager = {
             $("#countA").text("A: " + sampleCountA);
 
         } else if (this.droppable[0] == 'B') {
-                $('#hereB').append(`<td id="table${this.dragged.id}">${this.dragged.innerText}<button class="tableButton" id="B${this.dragged.id}">&times;</button></td>`);
-                filesetB.push(`'` + this.dragged.innerText + `'`);
-                sampleCountB++;
-                $("#countB").text("B: " + sampleCountB);
+            $('#hereB').append(`<td id="table${this.dragged.id}">${this.dragged.innerText}<button class="tableButton" id="B${this.dragged.id}">&times;</button></td>`);
+            filesetB.push(`'` + this.dragged.innerText + `'`);
+            sampleCountB++;
+            $("#countB").text("B: " + sampleCountB);
         } else if (this.droppable[0] == 'C') {
-                $('#hereC').append(`<td id="table${this.dragged.id}">${this.dragged.innerText}<button class="tableButton" id="C${this.dragged.id}">&times;</button></td>`);
-                filesetC.push(`'` + this.dragged.innerText + `'`);
-                sampleCountC++;
-                $("#countC").text("C: " + sampleCountC);
+            $('#hereC').append(`<td id="table${this.dragged.id}">${this.dragged.innerText}<button class="tableButton" id="C${this.dragged.id}">&times;</button></td>`);
+            filesetC.push(`'` + this.dragged.innerText + `'`);
+            sampleCountC++;
+            $("#countC").text("C: " + sampleCountC);
         }
 
     }
 };
 
-function vennInit(){
+function vennInit() {
     $("#countA").text("A: " + sampleCountA);
     $("#countB").text("B: " + sampleCountB);
     $("#countC").text("C: " + sampleCountC);
@@ -698,11 +694,11 @@ function vennInit(){
     //action listeners for venn
     div.selectAll('g')
         .on('mouseover', function (d, i) {
-            DragDropManager.droppable = d.sets;
+            DragDrop.droppable = d.sets;
         })
 
         .on('mouseout', function (d, i) {
-            DragDropManager.droppable = null;
+            DragDrop.droppable = null;
 
         })
 
@@ -753,7 +749,7 @@ function vennInit(){
         }
     });
 
-//remove sample if close button is clicked in tooltip
+    //remove sample if close button is clicked in tooltip
     $("#tooltipdiv").on('click', '.tableButton', function () {
         var ID = (this.id).substr(1);
         var tableID = `[id="table${ID}"]`;
@@ -827,12 +823,12 @@ function vennInit(){
         var files = circlesDisplayed();
         alert(typeof files);
         function hasSamples() {
-            for(var x=0; x<files.length;x++){
-                if(files[x]=="A"){
+            for (var x = 0; x < files.length; x++) {
+                if (files[x] == "A") {
                     return filesetA.length;
-                } else if(files[x]=="B"){
+                } else if (files[x] == "B") {
                     return filesetB.length;
-                } else if(files[x]=="C"){
+                } else if (files[x] == "C") {
                     return filesetC.length;
                 }
             }
@@ -868,20 +864,17 @@ function vennInit(){
                     type: 'success',
                     layout: 'center',
                     text: " Virtual Genome VCF file downloaded to: " + loc,
-                    //timeout: '5000',
                     theme: 'light',
                     closeWith: ['button'],
                 }).show();
 
-                //resetVenn();
-                //filesetA = [];
-                //filesetB = [];
+
                 $('#genomeTable td').draggable('option', 'disabled', false);
                 $('.venntooltip td').remove();
                 $("#filepath").val("")
 
             });
-            //if conditions were not fulfiled, display warnings
+            //if conditions were not fulfilled, display warnings
         } else {
             if (!command) {
                 new Noty({
@@ -935,21 +928,11 @@ function vennInit(){
                             }).show();
                         }
                     }
-                })
-            }
-            {
+                });
 
             }
 
         }
-
-        //resetVenn();
-        //operations={};
-        //filesetA = [];
-        //filesetB = [];
-        $('#genomeTable td').draggable('option', 'disabled', false);
-        $('.venntooltip td').remove();
-        $("#filepath").val("")
     });
 };
 //resets venn to original appearance
@@ -995,11 +978,6 @@ function addSample(input, fset) {
 }
 
 
-function unionAB(elem) {
-    if (elem.length == 1 && elem[0] == 'A') return true;
-    return false;
-}
-
 function hasSamples2(collection) {
     collection.forEach(function (elem) {
         if (elem == "A") {
@@ -1012,7 +990,7 @@ function hasSamples2(collection) {
     });
 }
 
-function customiseVenn(){
+function customiseVenn() {
     var colours = ["#D81B60", "#1E88E5", "#FFC107"];
     d3.selectAll("#venn .venn-circle path")
         .style("fill", function (d, i) { return colours[i]; })
@@ -1020,11 +998,8 @@ function customiseVenn(){
         .style("stroke", "none");
 
     d3.selectAll("#venn .venn-intersection path")
-        .style("stroke", "#004D40")
-        .style("stroke-width", 0);
+        .style("fill-opacity", 0)
 
-    d3.select("[data-venn-sets=A_B_C]").select("path")
-        .style("stroke", "");
 
     d3.selectAll("#venn .venn-circle text")
         .style("fill", "#fff")
@@ -1053,6 +1028,32 @@ function circlesDisplayed() {
         }
     });
     return displayed;
+}
+
+
+function getIntersect() {
+    var intCircle = [];
+    d3.selectAll(".venn-intersection").each(function (d, i) {
+        var sel = d3.select(this).attr("data-venn-sets");
+        var selArray = sel.replace(/_/g, ",").split(",");
+        //if intersection is already highlighted, ignore
+        if (!area.some(elem => elem.join().includes(selArray) && elem.length == selArray.length)) {
+            var item = "[data-venn-sets=" + sel + "]"
+            intCircle.push(item);
+        }
+    })
+
+    //keeps the entire intersect green/selected if it has already been selected
+    if (intCircle.length < 4) {
+        intCircle = intCircle.filter(elem => !elem.includes("A_B_C"));
+        if (area.some(elem => elem.length == 2)) {
+            d3.select("[data-venn-sets=A_B_C]").select("path")
+                .style("fill", area.some(elem => elem.length == 3) ? "#fff" : "#004D40")
+                .style("fill-opacity", 1)
+        }
+    }
+
+    return intCircle;
 }
 
 //draws venn again
@@ -1085,32 +1086,20 @@ function redraw() {
                 d3.select(this).select("text")
                     .style("font-size", "36px");
 
-                d3.selectAll(".venn-intersection").each(function (d, i) {
-                    var sel = d3.select(this).attr("data-venn-sets");
-                    var selArray = sel.replace(/_/g, ",").split(",");
-
-                    if (!area.some(elem => elem.join().includes(selArray) && elem.length == selArray.length)) {
-                        var item = "[data-venn-sets=" + sel + "]"
-                        int.push(item);
-                    }
-                })
-                if (int.length < 3) {
-                    int.filter(elem => !elem.length == 3);
-                }
-                change = int.filter(elem => elem.includes(d.sets));
-                change.forEach(function (elem) {
+                var int = getIntersect();
+                int = int.filter(elem => elem.includes(d.sets));
+                int.forEach(function (elem) {
                     d3.select(elem).select("path")
                         .style("fill-opacity", .9)
                         .style("fill", "#fff")
                 });
-
             }
-            DragDropManager.droppable = d.sets;
+            DragDrop.droppable = d.sets;
         })
 
-        // Clear the target from the DragDropManager on mouseOut.
+        // Clear the target from the DragDrop on mouseOut.
         .on('mouseout', function (d, i) {
-            DragDropManager.droppable = null;
+            DragDrop.droppable = null;
             if (d.sets.length > 1 && !area.some(elem => elem.join().includes(d.sets) && elem.length == d.sets.length)) {
                 d3.select(this).select("path")
                     .style("fill-opacity", 0);
@@ -1119,13 +1108,13 @@ function redraw() {
                 d3.select(this).select("text")
                     .style("font-size", "24px");
 
-                change.forEach(function (elem) {
+                var int = getIntersect();
+                //filter for intersections that are part of the circle
+                int = int.filter(elem => elem.includes(d.sets));
+                int.forEach(function (elem) {
                     d3.select(elem).select("path")
                         .style("fill-opacity", 0)
-
-                    int = [];
-                    change = [];
-                })
+                });
             }
 
         })
@@ -1178,7 +1167,10 @@ function redraw() {
                         .style("font-size", "46px");
                     //remove highlight from intersects
                     if (d.sets.length == 1) {
-                        change.forEach(function (elem) {
+                        var int = getIntersect();
+                        //is this line necessary?
+                        int = int.filter(elem => elem.includes(d.sets));
+                        int.forEach(function (elem) {
                             d3.select(elem).select("path")
                                 .style("fill-opacity", 0)
                         });
@@ -1223,6 +1215,8 @@ function redraw() {
 function getNotation() {
     var circleD = circlesDisplayed();
     var areaL = area.length;
+    var single = area.filter(elem => elem.length == 1);
+    var double = area.filter(elem => elem.length == 2);
     switch (circleD.length) {
         case 0:
             $('#notation').html("&empty;");
@@ -1260,14 +1254,12 @@ function getNotation() {
                             command = area[0][0] + " ^ " + area[1][0];
                             break;
                         case false:
-                            var single = area.filter(elem => elem.length == 1);
                             $("#notation").html(single[0][0]);
                             command = single[0][0];
                             break;
                     }
                     break;
                 case 3:
-                    var single = area.filter(elem => elem.length == 1);
                     $("#notation").html(single[0][0] + " &cup; " + single[1][0]);
                     command = single[0][0] + " | " + single[1][0];
                     break;
@@ -1310,7 +1302,6 @@ function getNotation() {
                             switch (area.every(elem => elem.length == 1 || elem.length == 3)) {
                                 case true:
                                     //WY
-                                    var single = area.filter(elem => elem.length == 1);
                                     var other = circleD.filter(elem => !single.join().includes(elem));
                                     $('#notation').html("(" + single[0] + " &minus; " + other[0] + " &minus; " + other[1] + ") &cup; ("
                                         + circleD[0] + " & " + circleD[1] + " & " + circleD[2] + ")");
@@ -1337,8 +1328,6 @@ function getNotation() {
                                                     break;
                                                 case false:
                                                     //WX
-                                                    var single = area.filter(elem => elem.length == 1);
-                                                    var double = area.filter(elem => elem.length == 2);
                                                     switch (double.join().includes(single)) {
                                                         case true:
                                                             var uns = circleD.filter(elem => !double.join().includes(elem));
@@ -1379,7 +1368,6 @@ function getNotation() {
                                     switch (area.every(elem => elem.length == 1 || elem.length == 3)) {
                                         case true:
                                             //W2Y
-                                            var single = area.filter(elem => elem.length == 1);
                                             var other = circleD.filter(elem => !single.join().includes(elem));
                                             $('#notation').html("( (" + single[0][0] + " &#8710; " + single[1][0] + ") &minus; " + other[0]
                                                 + " ) &cup; (" + circleD[0] + " &cap; " + circleD[1] + " &cap; " + circleD[2] + ")");
@@ -1390,7 +1378,6 @@ function getNotation() {
                                             switch (area.every(elem => elem.length == 2 || elem.length == 3)) {
                                                 case true:
                                                     //Z2
-                                                    var double = area.filter(elem => elem.length == 2);
                                                     $('#notation').html("(" + double[0][0] + " &cap; " + double[0][1] + ") &#8710; (" + double[1][0] +
                                                         " &cap; " + double[1][1] + ")");
                                                     command = "(" + double[0][0] + " & " + double[0][1] + ") ^ (" + double[1][0] +
@@ -1402,8 +1389,6 @@ function getNotation() {
                                                             switch (area.some(elem => elem.length == 3)) {
                                                                 case true:
                                                                     //WZ
-                                                                    var single = area.filter(elem => elem.length == 1);
-                                                                    var double = area.filter(elem => elem.length == 2);
                                                                     switch (double.join().includes(single)) {
 
                                                                         case true:
@@ -1422,21 +1407,18 @@ function getNotation() {
                                                                     break;
                                                                 case false:
                                                                     //WX2
-                                                                    var singles = area.filter(elem => elem.length == 1);
-                                                                    var doubles = area.filter(elem => elem.length == 2);
-                                                                    switch (doubles.every(elem => elem.join().includes(singles))) {
+                                                                    switch (double.every(elem => elem.join().includes(single))) {
                                                                         case true:
-                                                                            $('#notation').html(singles[0]);
-                                                                            command = singles[0][0];
-                                                                            //console.log(command);
+                                                                            $('#notation').html(single[0]);
+                                                                            command = single[0][0];
                                                                             break;
                                                                         case false:
-                                                                            var unq = doubles.filter(elem => !elem.join().includes(singles));
-                                                                            var non = doubles.filter(elem => elem.join().includes(singles));
+                                                                            var unq = double.filter(elem => !elem.join().includes(single));
+                                                                            var non = double.filter(elem => elem.join().includes(single));
                                                                             var uni = circleD.filter(elem => !non.join().includes(elem));
-                                                                            $('#notation').html("(" + singles[0] + " &minus; " + uni[0] + ") &cup; (" +
+                                                                            $('#notation').html("(" + single[0] + " &minus; " + uni[0] + ") &cup; (" +
                                                                                 unq[0][0] + " &cap; " + unq[0][1] + ")");
-                                                                            command = "(" + singles[0][0] + " \\ " + uni[0] + ") | (" +
+                                                                            command = "(" + single[0][0] + " \\ " + uni[0] + ") | (" +
                                                                                 unq[0][0] + " & " + unq[0][1] + ")"
                                                                             break;
                                                                     }
@@ -1446,13 +1428,11 @@ function getNotation() {
                                                             break;
                                                         case 2:
                                                             //W2X
-                                                            var single2 = area.filter(elem => elem.length == 1);
                                                             var uns = circleD.filter(elem => !single2.join().includes(elem));
-                                                            var double2 = area.filter(elem => elem.length == 2);
-                                                            $('#notation').html("( (" + single2[0] + " &#8710; " + single2[1] + ") &minus; " +
-                                                                uns[0] + ") &cup; (" + double2[0][0] + " &cap; " + double2[0][1] + ")");
-                                                            command = "( (" + single2[0][0] + " ^ " + single2[1][0] + ") \\" +
-                                                                uns[0] + ") | (" + double2[0][0] + " & " + double2[0][1] + ")";
+                                                            $('#notation').html("( (" + single[0] + " &#8710; " + single[1] + ") &minus; " +
+                                                                uns[0] + ") &cup; (" + double[0][0] + " &cap; " + double[0][1] + ")");
+                                                            command = "( (" + single[0][0] + " ^ " + single[1][0] + ") \\" +
+                                                                uns[0] + ") | (" + double[0][0] + " & " + double[0][1] + ")";
                                                             break;
 
                                                     }
@@ -1467,8 +1447,6 @@ function getNotation() {
                 case 4:
                     switch (area.some(elem => elem.length == 2)) {
                         case true:
-                            var double = area.filter(elem => elem.length == 2);
-                            var single = area.filter(elem => elem.length == 1);
                             switch (area.some(elem => elem.length == 3)) {
                                 case true:
                                     switch (double.length) {
@@ -1569,8 +1547,6 @@ function getNotation() {
                 case 5:
                     switch (area.some(elem => elem.length == 3)) {
                         case true:
-                            var double = area.filter(elem => elem.length == 2);
-                            var single = area.filter(elem => elem.length == 1);
                             switch (double.length) {
                                 case 1:
                                     //W3Z
@@ -1608,7 +1584,6 @@ function getNotation() {
                             switch (area.filter(elem => elem.length == 2).length) {
                                 case 2:
                                     //W3X2
-                                    var double = area.filter(elem => elem.length == 2);
                                     var other = intersect.filter(elem => !double.join().includes(elem));
                                     var singCirc = circleD.filter(elem => !other.join().includes(elem));
                                     $('#notation').html("(" + other[0][0] + " &#8710; " + other[0][1] + ") &cup; " + singCirc[0]);
@@ -1616,7 +1591,6 @@ function getNotation() {
                                     break;
                                 case 3:
                                     //W2X3
-                                    var single = area.filter(elem => elem.length == 1);
                                     $('#notation').html(single[0] + " &cup; " + single[1]);
                                     command = single[0][0] + " | " + single[1][0];
                                     break;
@@ -1627,7 +1601,6 @@ function getNotation() {
                 case 6:
                     switch (area.some(elem => elem.length == 3)) {
                         case true:
-                            var double = area.filter(elem => elem.length == 2);
                             switch (area.filter(elem => elem.length == 2).length) {
                                 case 2:
                                     //WW3Z2
@@ -1639,7 +1612,6 @@ function getNotation() {
                                     break;
                                 case 3:
                                     //W2Z3
-                                    var single = area.filter(elem => elem.length == 1);
                                     $('#notation').html("(" + single[0] + " &cup; " + single[1] + ") &minus; (" + circleD[0] +
                                         " &cap; " + circleD[1] + " &cap; " + circleD[2] + ")");
                                     command = "(" + single[0][0] + " | " + single[1][0] + ") \\ (" + circleD[0] +
