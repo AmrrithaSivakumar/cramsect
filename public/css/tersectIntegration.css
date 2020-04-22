@@ -285,6 +285,16 @@ progress[value] {
     opacity: 0;
 }
 
+.venntooltip td {
+    padding: 5px 5px;
+    margin: 2px 1px;
+    display: inline-block;
+    border: 3px solid black;
+    border-radius: 5px;
+    background: #ebebeb;
+    color: #000;
+    }
+
 #gv-tersect-gui-container .samples {
     cursor: -webkit-grab;
     cursor: grab;

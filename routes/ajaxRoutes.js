@@ -242,12 +242,21 @@ function tersect(command, id, file) {
 
 router.post('/generate',function(req,res,next){
     var comm = req.body.command;
-    //convert samples selected into tersect format u()
-    var listA = "u" + req.body.setA.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
-    var listB = "u" + req.body.setB.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
-    var listC = "u" + req.body.setC.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
 
-    var fullCommand = comm.replace(/GenomelistA/g, listA).replace(/GenomelistB/g, listB).replace(/GenomelistC/g, listC);
+    var fullCommand = comm;
+    if(comm.includes("A")){
+      var A = "u" + req.body.setA.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+      fullCommand = fullCommand.replace(/A/g, A);
+    }
+    if(comm.includes("B")){
+      var B = "u" + req.body.setB.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+      fullCommand = fullCommand.replace(/B/g, B);
+    }
+    if(comm.includes("C")){
+      var C = "u" + req.body.setC.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+      fullCommand = fullCommand.replace(/C/g, C);
+    }
+
     var id = req.body.idToGet;
     var filepath = path.join(__dirname, "../newVCF/"+ req.body.filepath);
     
