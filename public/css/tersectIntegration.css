@@ -272,7 +272,7 @@ progress[value] {
     text-align: center;
 }
 
-#gv-tersect-gui-container venntooltip {
+.venntooltip {
     position: absolute;
     text-align: center;
     width: 250px;
@@ -302,11 +302,17 @@ progress[value] {
 }
 
 #venn {
-    cursor: pointer;
-    height: 400px;
+    height: 450px;
     width: 100%;
-    display: inline-block;
-    margin: 0 auto;
+    /*display: block;
+    margin: auto;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#venn svg{
+    cursor: pointer;
 }
 
 #gv-tersect-gui-container .sidenav{
@@ -332,3 +338,7 @@ progress[value] {
 #tersectMenu *{
     color: #0f0f0f;
 }
+
+input[type="radio"]{
+    margin: 0 10px 0 10px;
+  }

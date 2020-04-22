@@ -94,15 +94,14 @@ Genoverse.Plugins.tersectIntegration = function () {
             function makeTersectMenu() {
                 var tersectMenu = browser.makeMenu({
                     'Tersect: File Selection:': '',
-                    '<span><a class="gv-tersect-integration-text gv-tersect-integration-input gv-tersect-integration-select-button" id="tsi-file">TSI File <i class="fa fa-arrow-circle-right"></i></a></span></br> \
-                        <input type="text" id="searchBox" placeholder="Search for samples..."><span style="display:inline-block; width: 5px;"></span><button id="wildbutton" type="submit">Add Group</button> \
-                        <label for="A">File set A</label><input type="radio" name="fileset" id="A" value="File A"><span style="display:inline-block; width: 5px;"></span><label for="B">File set B</label><input type="radio" name="fileset" id="B" value="File B"><span style="display:inline-block; width: 5px;"></span><label for="C">File set C</label></label><input type="radio" name="fileset" id="C" value="File C">\
+                    '</br><span><a class="gv-tersect-integration-text gv-tersect-integration-input gv-tersect-integration-select-button" id="tsi-file">Select TSI File <i class="fa fa-arrow-circle-right"></i></a></span></br></br> \
+                        <input type="text" id="searchBox" placeholder="Search for samples..."><span style="display:inline-block; width: 5px;"></span><button id="wildbutton" type="submit">Add Group</button></br></br> \
+                        <label for="A">Set A</label><span style="display:inline-block; width: 5px;"></span><input type="radio" name="fileset" id="A" value="File A"><label for="B">Set B</label><span style="display:inline-block; width: 5px;"></span><input type="radio" name="fileset" id="B" value="File B"><label for="C">Set C</label><span style="display:inline-block; width: 5px;"></span><input type="radio" name="fileset" id="C" value="File C">\
                         <div id="gv-tersect-gui-container"><table id="genomeTable"></table></div> \
                         <div id="sampleCount"> <h4>Sample Count</h4> <span id="countA">A: </span> <span style="display:inline-block; width: 5px;"></span> <span id="countB">B: </span> <span style="display:inline-block; width: 5px;"></span> <span id="countC">C: </span> </div> <div id="setnotation"> <h4>Set notation:</h4> <p id="notation"></p> </div>\
-                        <div id="venncontrols"> <button id="addCircle">Add Circle</button> <span style="display:inline-block; width: 20px;"></span> <input id="circleName" type="text" placeholder="Input name of circle..." /> <button id="removeCircle">Remove Circle</button> </div>\
-                        <div><span class="gv-tersect-integration-span" id="clearFile"><a class="gv-tersect-integration-text ">Clear Files <i class="fa fa-arrow-circle-right"></i></a></span> <span class="gv-tersect-integration-span" id="clearOperations"><a class="gv-tersect-integration-text">Clear Operations <i class="fa fa-arrow-circle-right"></i></a></span></div> \
-                        <div><span class="gv-tersect-integration-span" id="save-query"><a class="gv-tersect-integration-text ">Save Query <i id="save-status" class="fa fa-arrow-circle-right"></i></a></span> <span class="gv-tersect-integration-span" id="saved-queries"><a class="gv-tersect-integration-text">Saved Queries <i class="fa fa-arrow-circle-right"></i></a></span></div> \
-                        <div><input type="text" id="filepath" />&nbsp;&nbsp;<span><a class="gv-tersect-integration-text" id="submit">Submit <i class="fa fa-arrow-circle-right"></i></a></span></div>\
+                        <div><span class="gv-tersect-integration-span" id="clearFile"><a class="gv-tersect-integration-text ">Clear Files <i class="fa fa-arrow-circle-right"></i></a></span> <span class="gv-tersect-integration-span" id="clearOperations"><a class="gv-tersect-integration-text">Clear Operations <i class="fa fa-arrow-circle-right"></i></a></span></div></br> \
+                        <div><span class="gv-tersect-integration-span" id="save-query"><a class="gv-tersect-integration-text ">Save Query <i id="save-status" class="fa fa-arrow-circle-right"></i></a></span> <span class="gv-tersect-integration-span" id="saved-queries"><a class="gv-tersect-integration-text">Saved Queries <i class="fa fa-arrow-circle-right"></i></a></span></div></br> \
+                        <div><input type="text" id="filepath" />&nbsp;&nbsp;<span><a class="gv-tersect-integration-text" id="submit">Submit Query <i class="fa fa-arrow-circle-right"></i></a></span></div>\
                         <div id="tooltipdiv">\
                             <table id="sampleA" class="venntooltip">\
                                 <tr>\
@@ -119,7 +118,7 @@ Genoverse.Plugins.tersectIntegration = function () {
                                 <tr>\
                                     <th><button id="hideC">&times;</button> Samples in C</th>\
                                 </tr>\
-                            <tr id="hereC"></tr></table> </div>': '<div id="venn"></div>',
+                            <tr id="hereC"></tr></table> </div>': '<div id="right"><div id="venn"></div></br><div id="venncontrols"> <button id="addCircle">Add Circle</button> <span style="display:inline-block; width: 20px;"></span> <input id="circleName" type="text" placeholder="Input name of circle..." /> <button id="removeCircle">Remove Circle</button></div></div>',
 
                 }).addClass('gv-tersect-integration-menu');
                 vennInit();
@@ -584,8 +583,7 @@ var tooltipC;
 //sets for making venn diagram
 var sets = [{ sets: ['A'], size: 12 }];
 
-//hide radiobuttons and labels and counts
-$("label[for=B], #B, #countB, label[for=C], #C, #countC").hide();
+
 
 
 /**allows mouseover event to fire during drag and drop and not after
@@ -620,6 +618,10 @@ var DragDrop = {
 };
 
 function vennInit() {
+
+    //hide radiobuttons and labels and counts
+    $("label[for=B], #B, #countB, label[for=C], #C, #countC").hide();
+
     $("#countA").text("A: " + sampleCountA);
     $("#countB").text("B: " + sampleCountB);
     $("#countC").text("C: " + sampleCountC);
@@ -706,8 +708,8 @@ function vennInit() {
             d3.event.preventDefault();
             $('#sampleA').show();
             tooltipA.transition().duration(400).style("opacity", .9);
-            tooltipA.style("left", d3.event.pageX + "px")
-                .style("top", d3.event.pageY + "px");
+            tooltipA.style("left", (d3.event.pageX - 250 )+ "px")
+                .style("top", (d3.event.pageY - 100) + "px");
 
         })
 
@@ -811,6 +813,12 @@ function vennInit() {
         filesetA = [];
         filesetB = [];
         filesetC = [];
+        sampleCountA = 0;
+        sampleCountB = 0;
+        sampleCountC = 0;
+        $("#countA").text("A: " + sampleCountA);
+        $("#countB").text("B: " + sampleCountB);
+        $("#countC").text("C: " + sampleCountC);
         $('#genomeTable td').draggable('option', 'disabled', false);
         $('.venntooltip td').remove();
 
@@ -821,7 +829,7 @@ function vennInit() {
 
     $("#submit").click(function () {
         var files = circlesDisplayed();
-        alert(typeof files);
+        //alert(typeof files);
         function hasSamples() {
             for (var x = 0; x < files.length; x++) {
                 if (files[x] == "A") {
@@ -833,8 +841,7 @@ function vennInit() {
                 }
             }
         }
-
-        alert(hasSamples())
+        //alert(hasSamples);
         getNotation();
         //alert("command:" +command+"filepath: "+$("#filepath").val()+"hassamples: "+ hasSamples2(files));
 
@@ -869,9 +876,9 @@ function vennInit() {
                 }).show();
 
 
-                $('#genomeTable td').draggable('option', 'disabled', false);
-                $('.venntooltip td').remove();
-                $("#filepath").val("")
+                //$('#genomeTable td').draggable('option', 'disabled', false);
+                //$('.venntooltip td').remove();
+                //$("#filepath").val("")
 
             });
             //if conditions were not fulfilled, display warnings
@@ -1061,13 +1068,13 @@ function redraw() {
     var div = d3.select("#venn");
     if (circlesDisplayed().length > 1) {
         div.datum(sets).call(chart
-            .width(550)
-            .height(550)
+            .width(400)
+            .height(400)
         );
     } else {
         div.datum(sets).call(chart
-            .width(400)
-            .height(400)
+            .width(300)
+            .height(300)
         );
     }
 
@@ -1125,18 +1132,18 @@ function redraw() {
                 if (d.sets[0] == 'A') {
                     $('#sampleA').show();
                     tooltipA.transition().duration(400).style("opacity", .9);
-                    tooltipA.style("left", d3.event.pageX + "px")
-                        .style("top", d3.event.pageY + "px");
+                    tooltipA.style("left", (d3.event.pageX - 250 )+ "px")
+                        .style("top", (d3.event.pageY - 100) + "px");
                 } else if (d.sets[0] == 'B') {
                     $('#sampleB').show();
                     tooltipB.transition().duration(400).style("opacity", .9);
-                    tooltipB.style("left", d3.event.pageX + "px")
-                        .style("top", d3.event.pageY + "px");
+                    tooltipB.style("left", (d3.event.pageX - 250 ) + "px")
+                        .style("top", (d3.event.pageY - 100) + "px");
                 } else if (d.sets[0] == 'C') {
                     $('#sampleC').show();
                     tooltipC.transition().duration(400).style("opacity", .9);
-                    tooltipC.style("left", d3.event.pageX + "px")
-                        .style("top", d3.event.pageY + "px");
+                    tooltipC.style("left", (d3.event.pageX - 250 ) + "px")
+                        .style("top", (d3.event.pageY - 100) + "px");
                 }
             }
         })
@@ -1239,11 +1246,11 @@ function getNotation() {
                         case 1:
                             var other = circleD.filter(elem => elem !== area[0]);
                             $('#notation').html(area[0] + " &minus; " + other[0]);
-                            command = area[0][0] + "\\" + other[0];
+                            command = "Genomelist" + area[0][0] + "\\" + "Genomelist" + other[0];
                             break;
                         case 2:
                             $("#notation").html(area[0][0] + " &cap; " + area[0][1]);
-                            command = area[0][0] + " & " + area[0][1];
+                            command = "Genomelist" + area[0][0] + " & " + "Genomelist" + area[0][1];
                             break;
                     }
                     break;
@@ -1251,17 +1258,17 @@ function getNotation() {
                     switch (area.every(elem => elem.length == 1)) {
                         case true:
                             $("#notation").html(area[0][0] + " &#8710; " + area[1][0]);
-                            command = area[0][0] + " ^ " + area[1][0];
+                            command = "Genomelist" + area[0][0] + " ^ " + "Genomelist" + area[1][0];
                             break;
                         case false:
                             $("#notation").html(single[0][0]);
-                            command = single[0][0];
+                            command = "Genomelist" + single[0][0];
                             break;
                     }
                     break;
                 case 3:
                     $("#notation").html(single[0][0] + " &cup; " + single[1][0]);
-                    command = single[0][0] + " | " + single[1][0];
+                    command = "Genomelist" + single[0][0] + " | " + "Genomelist" + single[1][0];
                     break;
             }
             break;
@@ -1278,15 +1285,15 @@ function getNotation() {
                         case 1:
                             var other = circleD.filter(elem => elem !== area[0]);
                             $('#notation').html(area[0] + " &minus; " + other[0] + " &minus; " + other[1]);
-                            command = area[0][0] + " \\ " + other[0] + " \\ " + other[1]
+                            command = "Genomelist" + area[0][0] + " \\ " + "Genomelist" + other[0] + " \\ " + "Genomelist" + other[1]
                             break;
                         case 2:
                             $('#notation').html(area[0][0] + " &cap; " + area[0][1]);
-                            command = area[0][0] + " & " + area[0][1];
+                            command = "Genomelist" + area[0][0] + " & " + "Genomelist" + area[0][1];
                             break;
                         case 3:
                             $('#notation').html(circleD[0] + " &cap; " + circleD[1] + " &cap; " + circleD[2]);
-                            command = circleD[0] + " & " + circleD[1] + " & " + circleD[2];
+                            command = "Genomelist" + circleD[0] + " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2];
                             break;
                     }
                     break;
@@ -1296,7 +1303,7 @@ function getNotation() {
                             //W2
                             var other = circleD.filter(elem => !area.join().includes(elem));
                             $('#notation').html("(" + area[0] + " &#8710; " + area[1] + ") &minus; " + other[0]);
-                            command = "(" + area[0][0] + " ^ " + area[1][0] + ") \\ " + other[0];
+                            command = "(" + "Genomelist" + area[0][0] + " ^ " + "Genomelist" + area[1][0] + ") \\ " + "Genomelist" + other[0];
                             break;
                         case false:
                             switch (area.every(elem => elem.length == 1 || elem.length == 3)) {
@@ -1305,8 +1312,8 @@ function getNotation() {
                                     var other = circleD.filter(elem => !single.join().includes(elem));
                                     $('#notation').html("(" + single[0] + " &minus; " + other[0] + " &minus; " + other[1] + ") &cup; ("
                                         + circleD[0] + " & " + circleD[1] + " & " + circleD[2] + ")");
-                                    command = "(" + single[0][0] + " \\ " + other[0] + " \\ " + other[1] + ") | ("
-                                        + circleD[0] + " & " + circleD[1] + " & " + circleD[2] + ")";
+                                    command = "(" + "Genomelist" + single[0][0] + " \\ " + "Genomelist" + other[0] + " \\ " + "Genomelist" + other[1] + ") | ("
+                                        + "Genomelist" + circleD[0] + " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2] + ")";
                                     break;
                                 case false:
                                     switch (area.every(elem => elem.length == 2)) {
@@ -1315,7 +1322,7 @@ function getNotation() {
                                             var common = area[0].filter(elem => area[1].includes(elem));
                                             var other = circleD.filter(elem => !common.includes(elem));
                                             $('#notation').html("(" + other[0] + " &cup; " + other[1] + ") &cap; " + common[0]);
-                                            command = "(" + other[0] + " | " + other[1] + ") & " + common[0][0];
+                                            command = "(" + "Genomelist" + other[0] + " | " + "Genomelist" + other[1] + ") & " + "Genomelist" + common[0][0];
                                             break;
                                         case false:
                                             switch (area.every(elem => elem.length == 2 || elem.length == 3)) {
@@ -1324,7 +1331,7 @@ function getNotation() {
                                                     var int = area.filter(elem => elem.length == 2);
                                                     var uns = circleD.filter(elem => !int.join().includes(elem));
                                                     $('#notation').html("(" + int[0][0] + " &cap; " + int[0][1] + ") &minus; " + uns[0]);
-                                                    command = "(" + int[0][0] + " & " + int[0][1] + ") \\ " + uns[0];
+                                                    command = "(" + "Genomelist" + int[0][0] + " & " + "Genomelist" + int[0][1] + ") \\ " + "Genomelist" + uns[0];
                                                     break;
                                                 case false:
                                                     //WX
@@ -1332,11 +1339,11 @@ function getNotation() {
                                                         case true:
                                                             var uns = circleD.filter(elem => !double.join().includes(elem));
                                                             $('#notation').html("(" + single[0] + " &minus; " + uns[0] + ") &cup; (" + double[0][0] + " &cap; " + double[0][1] + ")");
-                                                            command = "(" + single[0][0] + " \\ " + uns[0] + ") | (" + double[0][0] + " & " + double[0][1] + ")";
+                                                            command = "(" + "Genomelist" + single[0][0] + " \\ " + "Genomelist" + uns[0] + ") | (" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ")";
                                                             break;
                                                         case false:
                                                             $('#notation').html("(" + single[0] + " &minus; " + double[0][0] + " &minus; " + double[0][1] + ") &cup; (" + double[0][0] + " &cap; " + double[0][1] + ")");
-                                                            command = "(" + single[0][0] + " \\ " + double[0][0] + " \\ " + double[0][1] + ") | (" + double[0][0] + " & " + double[0][1] + ")";
+                                                            command = "(" + "Genomelist" + single[0][0] + " \\ " + "Genomelist" + double[0][0] + " \\ " + "Genomelist" + double[0][1] + ") | (" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ")";
                                                             break;
                                                     }
                                                     break;
@@ -1353,7 +1360,7 @@ function getNotation() {
                         case true:
                             //W3
                             $('#notation').html(area[0] + " &#8710; " + area[1] + " &#8710; " + area[2]);
-                            command = area[0][0] + " ^ " + area[1][0] + " ^ " + area[2][0];
+                            command = "Genomelist" + area[0][0] + " ^ " + "Genomelist" + area[1][0] + " ^ " + "Genomelist" + area[2][0];
                             break;
                         case false:
                             switch (area.every(elem => elem.length == 2)) {
@@ -1361,8 +1368,8 @@ function getNotation() {
                                     //X3
                                     $('#notation').html("(" + area[0][0] + " &cap; " + area[0][1] + ") &cup; (" + area[1][0] + " &cap; " + area[1][1] + ") &cup; ("
                                         + area[2][0] + " &cap; " + area[2][1] + ")");
-                                    command = "(" + area[0][0] + " & " + area[0][1] + ") | (" + area[1][0] + " & " + area[1][1] + ") | ("
-                                        + area[2][0] + " & " + area[2][1] + ")";
+                                    command = "(" + "Genomelist" + area[0][0] + " & " + "Genomelist" + area[0][1] + ") | (" + "Genomelist" + area[1][0] + " & " + "Genomelist" + area[1][1] + ") | ("
+                                        + "Genomelist" + area[2][0] + " & " + "Genomelist" + area[2][1] + ")";
                                     break;
                                 case false:
                                     switch (area.every(elem => elem.length == 1 || elem.length == 3)) {
@@ -1371,8 +1378,8 @@ function getNotation() {
                                             var other = circleD.filter(elem => !single.join().includes(elem));
                                             $('#notation').html("( (" + single[0][0] + " &#8710; " + single[1][0] + ") &minus; " + other[0]
                                                 + " ) &cup; (" + circleD[0] + " &cap; " + circleD[1] + " &cap; " + circleD[2] + ")");
-                                            command = "( (" + single[0][0] + " ^ " + single[1][0] + ") \\ " + other[0]
-                                                + " ) | (" + circleD[0] + " & " + circleD[1] + " & " + circleD[2] + ")";
+                                            command = "( (" + "Genomelist" + single[0][0] + " ^ " + "Genomelist" + single[1][0] + ") \\ " + "Genomelist" + other[0]
+                                                + " ) | (" + "Genomelist" + circleD[0] + " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2] + ")";
                                             break;
                                         case false:
                                             switch (area.every(elem => elem.length == 2 || elem.length == 3)) {
@@ -1380,8 +1387,8 @@ function getNotation() {
                                                     //Z2
                                                     $('#notation').html("(" + double[0][0] + " &cap; " + double[0][1] + ") &#8710; (" + double[1][0] +
                                                         " &cap; " + double[1][1] + ")");
-                                                    command = "(" + double[0][0] + " & " + double[0][1] + ") ^ (" + double[1][0] +
-                                                        " & " + double[1][1] + ")";
+                                                    command = "(" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ") ^ (" + "Genomelist" + double[1][0] +
+                                                        " & " + "Genomelist" + double[1][1] + ")";
                                                     break;
                                                 case false:
                                                     switch (area.filter(elem => elem.length == 1).length) {
@@ -1394,13 +1401,13 @@ function getNotation() {
                                                                         case true:
                                                                             var uns = circleD.filter(elem => !double.join().includes(elem));
                                                                             $('#notation').html(single[0] + " &minus; " + uns[0]);
-                                                                            command = single[0][0] + " \\ " + uns[0]
+                                                                            command = "Genomelist" + single[0][0] + " \\ " + "Genomelist" + uns[0]
                                                                             break;
                                                                         case false:
                                                                             $('#notation').html("(" + single[0] + " &minus; " + double[0][0] + " &minus; " + double[0][1] +
                                                                                 ") &cup; ( (" + double[0][0] + " &cap; " + double[0][1] + ") &minus; " + single[0] + ")");
-                                                                            command = "(" + single[0][0] + " \\ " + double[0][0] + " \\ " + double[0][1] +
-                                                                                ") | ( (" + double[0][0] + " & " + double[0][1] + ") \\ " + single[0][0] + ")";
+                                                                            command = "(" + "Genomelist" + single[0][0] + " \\ " + "Genomelist" + double[0][0] + " \\ " + "Genomelist" + double[0][1] +
+                                                                                ") | ( (" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ") \\ " + "Genomelist" + single[0][0] + ")";
                                                                             break;
 
                                                                     }
@@ -1410,7 +1417,7 @@ function getNotation() {
                                                                     switch (double.every(elem => elem.join().includes(single))) {
                                                                         case true:
                                                                             $('#notation').html(single[0]);
-                                                                            command = single[0][0];
+                                                                            command = "Genomelist" + single[0][0];
                                                                             break;
                                                                         case false:
                                                                             var unq = double.filter(elem => !elem.join().includes(single));
@@ -1418,8 +1425,8 @@ function getNotation() {
                                                                             var uni = circleD.filter(elem => !non.join().includes(elem));
                                                                             $('#notation').html("(" + single[0] + " &minus; " + uni[0] + ") &cup; (" +
                                                                                 unq[0][0] + " &cap; " + unq[0][1] + ")");
-                                                                            command = "(" + single[0][0] + " \\ " + uni[0] + ") | (" +
-                                                                                unq[0][0] + " & " + unq[0][1] + ")"
+                                                                            command = "(" + "Genomelist" + single[0][0] + " \\ " + "Genomelist" + uni[0] + ") | (" +
+                                                                                "Genomelist" + unq[0][0] + " & " + "Genomelist" + unq[0][1] + ")"
                                                                             break;
                                                                     }
 
@@ -1431,8 +1438,8 @@ function getNotation() {
                                                             var uns = circleD.filter(elem => !single2.join().includes(elem));
                                                             $('#notation').html("( (" + single[0] + " &#8710; " + single[1] + ") &minus; " +
                                                                 uns[0] + ") &cup; (" + double[0][0] + " &cap; " + double[0][1] + ")");
-                                                            command = "( (" + single[0][0] + " ^ " + single[1][0] + ") \\" +
-                                                                uns[0] + ") | (" + double[0][0] + " & " + double[0][1] + ")";
+                                                            command = "( (" + "Genomelist" + single[0][0] + " ^ " + "Genomelist" + single[1][0] + ") \\" +
+                                                                "Genomelist" + uns[0] + ") | (" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ")";
                                                             break;
 
                                                     }
@@ -1452,21 +1459,18 @@ function getNotation() {
                                     switch (double.length) {
                                         case 1:
                                             //W2Z
-
                                             var uns = circleD.filter(elem => !single.join().includes(elem));
                                             switch (single.every(elem => double.join().includes(elem))) {
                                                 case true:
-
-
                                                     $('#notation').html("(" + single[0] + " &cup; " + single[1] + ") &minus; " + uns[0]);
-                                                    command = "(" + single[0][0] + " | " + single[1][0] + ") \\ " + uns[0];
+                                                    command = "(" + "Genomelist" + single[0][0] + " | " + "Genomelist" + single[1][0] + ") \\ " + "Genomelist" + uns[0];
 
                                                     break;
                                                 case false:
                                                     var s1 = single.filter(elem => double.join().includes(elem));
                                                     var s2 = single.filter(elem => !double.join().includes(elem));
                                                     $('#notation').html(s1[0] + " &#8710; (" + s2[0] + " &minus; " + uns[0] + ")");
-                                                    command = s1[0][0] + " ^ (" + s2[0][0] + " \\ " + uns[0] + ")"
+                                                    command = "Genomelist" + s1[0][0] + " ^ (" + "Genomelist" + s2[0][0] + " \\ " + "Genomelist" + uns[0] + ")"
                                                     break;
                                             }
 
@@ -1476,13 +1480,13 @@ function getNotation() {
                                             switch (double.every(elem => elem.join().includes(single[0]))) {
                                                 case true:
                                                     $('#notation').html(single[0] + " &minus; (" + circleD[0] + " &cap; " + circleD[1] + " &cap; " + circleD[2] + ")");
-                                                    command = single[0][0] + " \\ (" + circleD[0] + " & " + circleD[1] + " & " + circleD[2] + ")";
+                                                    command = "Genomelist" + single[0][0] + " \\ (" + "Genomelist" + circleD[0] + " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2] + ")";
                                                     break;
                                                 case false:
                                                     var unec = double.filter(elem => !elem.join().includes(single));
                                                     var other = intersect.filter(elem => !double.join().includes(elem));
                                                     $('#notation').html("(" + single[0] + " &cup; (" + unec[0][0] + " &cap; " + unec[0][1] + ")  ) &minus; (" + other[0][0] + " &cap; " + other[0][1] + ")");
-                                                    command = "(" + single[0][0] + " | (" + unec[0][0] + " & " + unec[0][1] + ")  ) \\ (" + other[0][0] + " & " + other[0][1] + ")";
+                                                    command = "(" + "Genomelist" + single[0][0] + " | (" + "Genomelist" + unec[0][0] + " & " + "Genomelist" + unec[0][1] + ")  ) \\ (" + "Genomelist" + other[0][0] + " & " + "Genomelist" + other[0][1] + ")";
                                                     break;
                                             }
                                             break;
@@ -1490,21 +1494,20 @@ function getNotation() {
                                             //Z3
                                             $('#notation').html("(" + double[0][0] + " &cap; " + double[0][1] + ") &#8710; (" + double[1][0] + " &cap; " + double[1][1] +
                                                 ") &#8710; (" + double[2][0] + " &cap; " + double[2][1] + ")");
-                                            command = "(" + double[0][0] + " & " + double[0][1] + ") ^ (" + double[1][0] + " & " + double[1][1] +
-                                                ") ^ (" + double[2][0] + " & " + double[2][1] + ")";
+                                            command = "(" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ") ^ (" + "Genomelist" + double[1][0] + " & " + "Genomelist" + double[1][1] +
+                                                ") ^ (" + "Genomelist" + double[2][0] + " & " + "Genomelist" + double[2][1] + ")";
                                             //command = $('#notation').html().replace(/&cup;/g, "|").replace(/&cap;/g, "&").replace(/&minus;/g, "\\").replace(/&#8710;/g, "^");
                                             break;
                                     }
                                     break;
                                 case false:
-
                                     switch (double.length) {
                                         case 1:
                                             //W3X
                                             $('#notation').html("(" + circleD[0] + " &#8710; " + circleD[1] + " &#8710; " + circleD[2] +
                                                 ") &cup; (" + double[0][0] + " &cap; " + double[0][1] + ")");
-                                            command = "(" + circleD[0] + " ^ " + circleD[1] + " ^ " + circleD[2] +
-                                                ") | (" + double[0][0] + " & " + double[0][1] + ")";
+                                            command = "(" + "Genomelist" + circleD[0] + " ^ " + "Genomelist" + circleD[1] + " ^ " + "Genomelist" + circleD[2] +
+                                                ") | (" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ")";
                                             break;
                                         case 2:
                                             //W2X2
@@ -1514,11 +1517,11 @@ function getNotation() {
                                                     var s1 = single.filter(elem => !double[0].join().includes(elem) || !double[1].join().includes(elem));
                                                     var s2 = single.filter(elem => !s1.includes(elem));
                                                     $('#notation').html("(" + s1[0] + " &minus; " + uns[0] + ") &cup; " + s2[0]);
-                                                    command = "(" + s1[0][0] + " \\ " + uns[0] + ") | " + s2[0][0];
+                                                    command = "(" + "Genomelist" + s1[0][0] + " \\ " + "Genomelist" + uns[0] + ") | " + "Genomelist" + s2[0][0];
                                                     break;
                                                 case false:
                                                     $('#notation').html("(" + single[0] + " &#8710; " + single[1] + ") &cup; (" + double[0][0] + " &cap; " + double[0][1] + ")");
-                                                    command = "(" + single[0][0] + " ^ " + single[1][0] + ") | (" + double[0][0] + " & " + double[0][1] + ")";
+                                                    command = "(" + "Genomelist" + single[0][0] + " ^ " + "Genomelist" + single[1][0] + ") | (" + "Genomelist" + double[0][0] + " & " + "Genomelist" + double[0][1] + ")";
                                                     break;
                                             }
 
@@ -1527,7 +1530,7 @@ function getNotation() {
                                             //WX3
                                             var unq = double.filter(elem => !elem.join().includes(single));
                                             $('#notation').html(single[0] + " &cup; (" + unq[0][0] + " &cap; " + unq[0][1] + ")");
-                                            command = single[0][0] + " | (" + unq[0][0] + " & " + unq[0][1] + ")";
+                                            command = "Genomelist" + single[0][0] + " | (" + "Genomelist" + unq[0][0] + " & " + "Genomelist" + unq[0][1] + ")";
                                             break;
                                     }
                                     break;
@@ -1538,8 +1541,8 @@ function getNotation() {
                             $('#notation').html("(" + circleD[0] + " &#8710; " + circleD[1] + " &#8710; " + circleD[2] +
                                 ") &cup; (" + circleD[0] + " &cap; " + circleD[1] + " &cap; " + circleD[2] +
                                 ")");
-                            command = "(" + circleD[0] + " ^ " + circleD[1] + " ^ " + circleD[2] +
-                                ") | (" + circleD[0] + " & " + circleD[1] + " & " + circleD[2] +
+                            command = "(" + "Genomelist" + circleD[0] + " ^ " + "Genomelist" + circleD[1] + " ^ " + "Genomelist" + circleD[2] +
+                                ") | (" + "Genomelist" + circleD[0] + " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2] +
                                 ")"
                             break;
                     }
@@ -1552,7 +1555,7 @@ function getNotation() {
                                     //W3Z
                                     var other = circleD.filter(elem => !double.join().includes(elem));
                                     $('#notation').html("(" + double[0][0] + " &cup; " + double[0][1] + ") &#8710; " + other[0]);
-                                    command = "(" + double[0][0] + " | " + double[0][1] + ") ^ " + other[0];
+                                    command = "(" + "Genomelist" + double[0][0] + " | " + "Genomelist" + double[0][1] + ") ^ " + "Genomelist" + other[0];
                                     break;
                                 case 2:
                                     //W2Z2
@@ -1560,11 +1563,11 @@ function getNotation() {
                                         case true:
                                             var unq = intersect.filter(elem => !double.join().includes(elem));
                                             $('#notation').html("(" + single[0] + " &cup; " + single[1] + ") &minus; (" + unq[0][0] + " &cap; " + unq[0][1] + ")");
-                                            command = "(" + single[0][0] + " | " + single[1][0] + ") \\ (" + unq[0][0] + " & " + unq[0][1] + ")";
+                                            command = "(" + "Genomelist" + single[0][0] + " | " + "Genomelist" + single[1][0] + ") \\ (" + "Genomelist" + unq[0][0] + " & " + "Genomelist" + unq[0][1] + ")";
                                             break;
                                         case false:
                                             $('#notation').html(single[0] + " &#8710; " + single[1]);
-                                            command = single[0][0] + " ^ " + single[1][0];
+                                            command = "Genomelist" + single[0][0] + " ^ " + "Genomelist" + single[1][0];
                                             break;
                                     }
                                     break;
@@ -1573,7 +1576,7 @@ function getNotation() {
                                     var others = double.filter(elem => !elem.join().includes(single));
                                     $('#notation').html("(" + single[0] + " &cup;  (" + others[0][0] + " &cap; " + others[0][1] + ") ) &minus; (" + circleD[0] + " &cap; " + circleD[1] + " &cap; " + circleD[2] +
                                         ")");
-                                    command = "(" + single[0][0] + " |  (" + others[0][0] + " & " + others[0][1] + ") ) \\ (" + circleD[0] + " & " + circleD[1] + " & " + circleD[2] +
+                                    command = "(" + "Genomelist" + single[0][0] + " |  (" + "Genomelist" + others[0][0] + " & " + "Genomelist" + others[0][1] + ") ) \\ (" + "Genomelist" + circleD[0] + " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2] +
                                         ")";
                                     //  $('#notation').append("(" + single[0] + " &minus;  (" + others[0][0] + " &cap; " + others[0][1] + ") ) &cup; ( (" + others[0][0] + " &cap; " + others[0][1] + ") &minus; " + single[0] +
                                     //    ")");
@@ -1587,12 +1590,12 @@ function getNotation() {
                                     var other = intersect.filter(elem => !double.join().includes(elem));
                                     var singCirc = circleD.filter(elem => !other.join().includes(elem));
                                     $('#notation').html("(" + other[0][0] + " &#8710; " + other[0][1] + ") &cup; " + singCirc[0]);
-                                    command = "(" + other[0][0] + " ^ " + other[0][1] + ") | " + singCirc[0];
+                                    command = "(" + "Genomelist" + other[0][0] + " ^ " + "Genomelist" + other[0][1] + ") | " + "Genomelist" + singCirc[0];
                                     break;
                                 case 3:
                                     //W2X3
                                     $('#notation').html(single[0] + " &cup; " + single[1]);
-                                    command = single[0][0] + " | " + single[1][0];
+                                    command = "Genomelist" + single[0][0] + " | " + "Genomelist" + single[1][0];
                                     break;
                             }
                             break;
@@ -1607,22 +1610,22 @@ function getNotation() {
                                     var other = intersect.filter(elem => !double.join().includes(elem));
                                     $('#notation').html("(" + circleD[0] + " &cup; " + circleD[1] + " &cup; " + circleD[2] +
                                         ") &minus; (" + other[0][0] + " &cap; " + other[0][1] + ")");
-                                    command = "(" + circleD[0] + " | " + circleD[1] + " | " + circleD[2] +
-                                        ") \\ (" + other[0][0] + " & " + other[0][1] + ")";
+                                    command = "(" + "Genomelist" + circleD[0] + " | " + "Genomelist" + circleD[1] + " | " + "Genomelist" + circleD[2] +
+                                        ") \\ (" + "Genomelist" + other[0][0] + " & " + "Genomelist" + other[0][1] + ")";
                                     break;
                                 case 3:
                                     //W2Z3
                                     $('#notation').html("(" + single[0] + " &cup; " + single[1] + ") &minus; (" + circleD[0] +
                                         " &cap; " + circleD[1] + " &cap; " + circleD[2] + ")");
-                                    command = "(" + single[0][0] + " | " + single[1][0] + ") \\ (" + circleD[0] +
-                                        " & " + circleD[1] + " & " + circleD[2] + ")";
+                                    command = "(" + "Genomelist" + single[0][0] + " | " + "Genomelist" + single[1][0] + ") \\ (" + "Genomelist" + circleD[0] +
+                                        " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2] + ")";
                                     break;
                             }
                             break;
                         case false:
                             //W3X3
                             $('#notation').html(circleD[0] + " &cup; " + circleD[1] + " &cup; " + circleD[2]);
-                            command = circleD[0] + " |" + circleD[1] + " | " + circleD[2];
+                            command = "Genomelist" + circleD[0] + " |" + "Genomelist" + circleD[1] + " | " + "Genomelist" + circleD[2];
                             break;
                     }
 
@@ -1632,8 +1635,8 @@ function getNotation() {
                     $('#notation').html("(" + circleD[0] + " &cup; " + circleD[1] + " &cup; " + circleD[2] +
                         ") &minus; (" + circleD[0] + " &cap; " + circleD[1] + " &cap; " + circleD[2] +
                         ")");
-                    command = "(" + circleD[0] + " | " + circleD[1] + " | " + circleD[2] +
-                        ") \\ (" + circleD[0] + " & " + circleD[1] + " & " + circleD[2] +
+                    command = "(" + "Genomelist" + circleD[0] + " | " + "Genomelist" + circleD[1] + " | " + "Genomelist" + circleD[2] +
+                        ") \\ (" + "Genomelist" + circleD[0] + " & " + "Genomelist" + circleD[1] + " & " + "Genomelist" + circleD[2] +
                         ")";
                     break;
 

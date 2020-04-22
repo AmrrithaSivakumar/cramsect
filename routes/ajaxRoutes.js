@@ -243,11 +243,11 @@ function tersect(command, id, file) {
 router.post('/generate',function(req,res,next){
     var comm = req.body.command;
     //convert samples selected into tersect format u()
-    var A = "u" + req.body.setA.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
-    var B = "u" + req.body.setB.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
-    var C = "u" + req.body.setC.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+    var listA = "u" + req.body.setA.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+    var listB = "u" + req.body.setB.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+    var listC = "u" + req.body.setC.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
 
-    var fullCommand = comm.replace(/A/g, A).replace(/B/g, B).replace(/C/g, C);
+    var fullCommand = comm.replace(/GenomelistA/g, listA).replace(/GenomelistB/g, listB).replace(/GenomelistC/g, listC);
     var id = req.body.idToGet;
     var filepath = path.join(__dirname, "../newVCF/"+ req.body.filepath);
     
