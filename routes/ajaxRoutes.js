@@ -242,6 +242,7 @@ function tersect(command, id, file) {
 
 router.post('/generate',function(req,res,next){
     var comm = req.body.command;
+<<<<<<< HEAD
 
     var fullCommand = comm;
     if(comm.includes("A")){
@@ -257,11 +258,27 @@ router.post('/generate',function(req,res,next){
       fullCommand = fullCommand.replace(/C/g, C);
     }
 
+=======
+    var fullCommand = comm;
+    if(comm.includes("A")){
+        var A = "u" + req.body.setA.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+        fullCommand = fullCommand.replace(/A/g, A);
+    }
+    if(comm.includes("B")){
+        var B = "u" + req.body.setB.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+        fullCommand = fullCommand.replace(/B/g, B);
+    }
+    if(comm.includes("C")){
+        var C = "u" + req.body.setC.toString().replace(/\[/g, "(").replace(/\]/g, ")").replace(/"/g, "");
+        fullCommand = fullCommand.replace(/C/g, C);
+    }
+
+>>>>>>> 56f534716c79d56bcf3b920edba5769cb1f4d7f7
     var id = req.body.idToGet;
     var filepath = path.join(__dirname, "../newVCF/"+ req.body.filepath);
     
     console.error("ID: "+req.body.idToGet);
-    console.error("Command: "+req.body.command);
+    console.error("Command: "+ comm);
     console.error("Fullcommand: "+fullCommand);
     tersect(fullCommand,id, filepath);
     res.send({ "location": filepath });

@@ -128,11 +128,20 @@ Genoverse.Plugins.tersectIntegration = function () {
 
             function makeTersectIndexMenu() {
                 var indexMenu = browser.makeMenu({
+<<<<<<< HEAD
                     '<div>Choose Tersect Index File:</div>': '',
                     '<table class="gv-tersect-integration-text gv-tersect-index-list"><thead><tr><td>Name</td><td>Instance</td><td>Local?</td><td>&emsp;&emsp;&emsp;</td></tr></thead><tbody></tbody></table>': '',
                     '<span class="gv-tersect-integration-span" id="tsi-locate-index"><a class="gv-tersect-integration-text">Locate TSI Index <i class="fa fa-arrow-circle-right"></i></a></span>': '',
                     '<span class="gv-tersect-integration-span" id="generate-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>': ''
+=======
+                    '<div>Choose Tersect Index File:</div>':'',
+                    '<span class="gv-tersect-integration-span" id="tsi-refresh"><a class="gv-tersect-integration-text">Refresh List <i class="fa fa-arrow-circle-right"></i></a></span>':'',
+                    '<table class="gv-tersect-integration-text gv-tersect-index-list"><thead><tr><td>Name</td><td>Instance</td><td>Local?</td><td>&emsp;&emsp;&emsp;</td></tr></thead><tbody></tbody></table>':'',
+                    '<span class="gv-tersect-integration-span" id="tsi-locate-index"><a class="gv-tersect-integration-text">Locate TSI Index <i class="fa fa-arrow-circle-right"></i></a></span>':'',
+                    '<span class="gv-tersect-integration-span" id="generate-new-button"><a class="gv-tersect-integration-text">Generate New Index <i class="fa fa-arrow-circle-right"></i></a></span>':''
+>>>>>>> 56f534716c79d56bcf3b920edba5769cb1f4d7f7
                 }).addClass('gv-tersect-integration-file-menu');
+                $('#tsi-refresh',indexMenu).on('click',function(){indexPopulator(".gv-tersect-index-list tbody","/index/tersectUpload")})
                 return indexMenu;
             }
 
@@ -829,7 +838,10 @@ function vennInit() {
 
     $("#submit").click(function () {
         var files = circlesDisplayed();
+<<<<<<< HEAD
         //alert(typeof files);
+=======
+>>>>>>> 56f534716c79d56bcf3b920edba5769cb1f4d7f7
         function hasSamples() {
             for (var x = 0; x < files.length; x++) {
                 if (files[x] == "A") {
@@ -841,7 +853,11 @@ function vennInit() {
                 }
             }
         }
+<<<<<<< HEAD
         //alert(hasSamples);
+=======
+
+>>>>>>> 56f534716c79d56bcf3b920edba5769cb1f4d7f7
         getNotation();
         //alert("command:" +command+"filepath: "+$("#filepath").val()+"hassamples: "+ hasSamples2(files));
 
